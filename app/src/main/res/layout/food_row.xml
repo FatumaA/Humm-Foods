@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="foodProducts"
+            type="com.example.humm.model.FoodProducts" />
+
+
+        <variable
+            name="foodInterface"
+            type="com.example.humm.adapters.FoodListAdapter.FoodInterface" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> foodInterface.onItemClick(foodProducts)}"
+        android:background="?attr/selectableItemBackground"
+        >
+
+        <ImageView
+            android:id="@+id/foodImgView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:foodImage="@{foodProducts.imageUrl}"
+            tools:srcCompat="@tools:sample/avatars"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/foodNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:text="@{foodProducts.name}" />
+
+        <TextView
+            android:id="@+id/descView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:text="@{foodProducts.desc}" />
+
+        <TextView
+            android:id="@+id/priceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:text="@{String.valueOf(foodProducts.price) + `Kes`}" />
+
+        <TextView
+            android:id="@+id/availableView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/primary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:text="@{foodProducts.available ? `Available`:`Out of Stock`}" />
+
+        <Button
+            android:id="@+id/AddToCartBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:enabled="@{foodProducts.available}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:onClick="@{() -> foodInterface.addItem(foodProducts)}"
+            android:text="Add To Cart" />
+    </LinearLayout>
+</layout>

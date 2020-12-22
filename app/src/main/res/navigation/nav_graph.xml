@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/foodFragment">
+
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.example.humm.view.FoodFragment"
+        android:label="Our Menu "
+        tools:layout="@layout/fragment_food">
+        <action
+            android:id="@+id/action_foodFragment_to_foodDetailFragment"
+            app:destination="@id/foodDetailFragment" />
+        <action
+            android:id="@+id/action_foodFragment_to_cartFragment2"
+            app:destination="@id/cartFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodDetailFragment"
+        android:name="com.example.humm.view.FoodDetailFragment"
+        android:label="Menu Details">
+        <action
+            android:id="@+id/action_foodDetailFragment_to_cartFragment2"
+            app:destination="@id/cartFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeOrderFragment"
+        android:name="com.example.humm.view.PlaceOrderFragment"
+        android:label="Orders"
+        tools:layout="@layout/fragment_place_order">
+        <action
+            android:id="@+id/action_placeOrderFragment_to_foodFragment"
+            app:destination="@id/foodFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment2"
+        android:name="com.example.humm.view.CartFragment"
+        android:label="Cart">
+        <action
+            android:id="@+id/action_cartFragment2_to_placeOrderFragment"
+            app:destination="@id/placeOrderFragment" />
+    </fragment>
+</navigation>
